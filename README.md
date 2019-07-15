@@ -52,6 +52,7 @@ docker create \
 
 ## Command examples
 rclone copy --transfers=2 --checkers=8 --bwlimit=9M /data $DESTINATION:/$DESTINATION_SUBPATH
+
 rclone sync --size-only --transfers=2 --checkers=8 --bwlimit=9M /data $DESTINATION:/$DESTINATION_SUBPATH
 
 ## Info
