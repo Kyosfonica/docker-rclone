@@ -3,17 +3,17 @@
 PUID=${PUID:-911}
 PGID=${PGID:-911}
 
-if [ ! "$(id -u abc)" -eq "$PUID" ]; then usermod -o -u "$PUID" abc ; fi
-if [ ! "$(id -g abc)" -eq "$PGID" ]; then groupmod -o -g "$PGID" abc ; fi
+if [ ! "$(id -u dummy)" -eq "$PUID" ]; then usermod -o -u "$PUID" dummy ; fi
+if [ ! "$(id -g dummy)" -eq "$PGID" ]; then groupmod -o -g "$PGID" dummy ; fi
 
 echo "
 GID/UID
 -------------------------------------
-User uid:    $(id -u abc)
-User gid:    $(id -g abc)
+User uid:    $(id -u dummy)
+User gid:    $(id -g dummy)
 -------------------------------------
 "
-chown abc:abc \
+chown dummy:dummy \
 	/app \
 	/config \
 	/defaults \

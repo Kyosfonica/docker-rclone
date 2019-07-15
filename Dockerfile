@@ -1,13 +1,13 @@
-FROM alpine:latest
-MAINTAINER tynor88 <tynor@hotmail.com>
-
-# global environment settings
-ENV PLATFORM_ARCH="amd64"
-ARG RCLONE_VERSION="current"
+FROM alpine:3.10.1
+MAINTAINER kyos <kyos@kyos.es>
 
 # s6 environment settings
 ENV S6_BEHAVIOUR_IF_STAGE2_FAILS=2
 ENV S6_KEEP_ENV=1
+
+# global environment settings
+ENV RCLONE_VERSION="v1.48.0"
+ENV RCLONE_ARCH="amd64"
 
 # install packages
 RUN \
@@ -20,19 +20,20 @@ RUN \
  apk add --no-cache --virtual=build-dependencies \
 		wget \
 		curl \
+		screen \
 		unzip && \
 # add s6 overlay
  OVERLAY_VERSION=$(curl -sX GET "https://api.github.com/repos/just-containers/s6-overlay/releases/latest" \
 	| awk '/tag_name/{print $4;exit}' FS='[""]') && \
  curl -o \
 	/tmp/s6-overlay.tar.gz -L \
-	"https://github.com/just-containers/s6-overlay/releases/download/${OVERLAY_VERSION}/s6-overlay-${PLATFORM_ARCH}.tar.gz" && \
+	"https://github.com/just-containers/s6-overlay/releases/download/${OVERLAY_VERSION}/s6-overlay-${RCLONE_ARCH}.tar.gz" && \
  tar xfz \
 	/tmp/s6-overlay.tar.gz -C / && \
  cd tmp && \
- wget -q https://downloads.rclone.org/v${RCLONE_VERSION}/rclone-v${RCLONE_VERSION}-linux-${PLATFORM_ARCH}.zip && \
- unzip /tmp/rclone-v${RCLONE_VERSION}-linux-${PLATFORM_ARCH}.zip && \
- mv /tmp/rclone-*-linux-${PLATFORM_ARCH}/rclone /usr/bin && \
+ wget -q https://downloads.rclone.org/rclone-${RCLONE_VERSION}-linux-${RCLONE_ARCH}.zip && \
+ unzip /tmp/rclone-${RCLONE_VERSION}-linux-${RCLONE_ARCH}.zip && \
+ mv /tmp/rclone-*-linux-${RCLONE_ARCH}/rclone /usr/bin && \
  apk add --no-cache --repository http://nl.alpinelinux.org/alpine/edge/community \
 	shadow && \
 # cleanup
@@ -43,18 +44,18 @@ RUN \
 	/var/tmp/* \
 	/var/cache/apk/*
 
-# create abc user
+# create dummy user
 RUN \
 	groupmod -g 1000 users && \
-	useradd -u 911 -U -d /config -s /bin/false abc && \
-	usermod -G users abc && \
-# create some files / folders
-	mkdir -p /config /app /defaults /data && \
+	useradd -u 911 -U -d /config -s /bin/false dummy && \
+	usermod -G users dummy && \
+# create needed files and folders
+	mkdir -p /config /app /cronlist /data && \
 	touch /var/lock/rclone.lock
 
 # add local files
 COPY root/ /
 
-VOLUME ["/config"]
+VOLUME ["/config" ]
 
 ENTRYPOINT ["/init"]
