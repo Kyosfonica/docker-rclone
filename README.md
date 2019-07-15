@@ -18,8 +18,6 @@ Docker for [Rclone][appurl] - a command line program to sync files and directori
 * Yandex Disk
 * The local filesystem
 
-The default command is set to prevent Google Drive upload quota limit of 750Gb per 24hour by limiting the upload speed to 9M/seg.
-
 **Features**
 
 * MD5/SHA1 hashes checked at all times for file integrity
@@ -57,3 +55,4 @@ docker create \
 
 * Shell access whilst the container is running: `docker exec -it Rclone /bin/ash`
 * To monitor the logs of the container in realtime: `docker logs -f Rclone`
+* The default command is set to prevent Google Drive upload quota limit of 750Gb per 24hour by limiting the upload speed to 9M/seg.
