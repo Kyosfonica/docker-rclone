@@ -33,7 +33,7 @@ Docker for [Rclone][appurl] - a command line program to sync files and directori
 
 ```
 docker create \
-  --name=Rclone \
+  --name=rclone \
   -e DESTINATION=<sync destination from rclone.conf> \
   -v </path for rclone.conf>:/config \
   -v </path for data to backup>:/data \
@@ -50,9 +50,12 @@ docker create \
 * `-e CRON_SCHEDULE` A custom cron schedule which will override the default value of: 0 * * * * (hourly) (Optional)
 * `-e COMMAND` A custom rclone command which will override the default value of: rclone copy --transfers=2 --checkers=8 --bwlimit=9M /data $DESTINATION:/$DESTINATION_SUBPATH (Optional)
 
+## Command examples
+rclone copy --transfers=2 --checkers=8 --bwlimit=9M /data $DESTINATION:/$DESTINATION_SUBPATH
+rclone sync --size-only --transfers=2 --checkers=8 --bwlimit=9M /data $DESTINATION:/$DESTINATION_SUBPATH
 
 ## Info
 
-* Shell access whilst the container is running: `docker exec -it Rclone /bin/ash`
-* To monitor the logs of the container in realtime: `docker logs -f Rclone`
+* Shell access whilst the container is running: `docker exec -it rclone /bin/ash`
+* To monitor the logs of the container in realtime: `docker logs -f rclone`
 * The default command is set to prevent Google Drive upload quota limit of 750Gb per 24hour by limiting the upload speed to 9M/seg.
