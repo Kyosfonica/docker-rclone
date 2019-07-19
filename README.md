@@ -56,7 +56,7 @@ docker create \
 Only if one task is executed in the container
 * `-e CRON_SCHEDULE` A custom cron schedule which will override the default value of: 0 * * * * (hourly) (Optional)
 * `-e COMMAND` A custom rclone command which will override the default value of: rclone copy --transfers=2 --checkers=8 --bwlimit=9M /data $DESTINATION:/$DESTINATION_SUBPATH (Optional)
-* `-e HEARTBEAT_URL` When starting the rclone cron job, report to a healthcheck API endpoint at a defined web URI (eg. WDT.io or Healthchecks.io)
+* `-e HEARTBEAT_URL` When starting the rclone cron job, report to a healthcheck API endpoint at a defined web URI (eg. Healthchecks.io)
 
 ## Command examples
 ```
@@ -65,7 +65,7 @@ rclone sync --size-only --transfers=2 --checkers=8 --bwlimit=9M /data $DESTINATI
 ```
 ## Cron file example of multiple sync tasks
 First parameter for rclone.sh is the rclone command
-Second parameter is optional and is the heartbeat api call to an HTTP service (eg. WDT.io or Healthchecks.io)
+Second parameter is optional and is the heartbeat api call to an HTTP service (eg. Healthchecks.io)
 
 ```
 0 * * * 1 /app/rclone.sh "rclone copy --transfers=2 --checkers=8 --size-only --bwlimit=9M /data/folder1 SYNC_DESTINATION:/SYNC_DESTINATION_SUBPATH" "https://hc-ping.com/your-uuid-here"
