@@ -16,5 +16,5 @@ User gid:    $(id -g dummy)
 chown dummy:dummy \
 	/app \
 	/config \
-	/defaults \
+	/cronlist \
 	/var/lock/rclone.lock

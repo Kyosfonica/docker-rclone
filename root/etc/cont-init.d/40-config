@@ -2,13 +2,13 @@
 
 # change crontab file
 if [[ -n "$CRON_SCHEDULE" ]]; then
-  sed -i -e 's|0 \* \* \* \*|'"$CRON_SCHEDULE"'|g' /defaults/rclone_cron
+  sed -i -e 's|0 \* \* \* \*|'"$CRON_SCHEDULE"'|g' /cronlist/rclone_cron
 fi
 
-echo "crontab => $(cat /defaults/rclone_cron)"
+echo "crontab => $(cat /cronlist/rclone_cron)"
 
 # set crontab
-crontab -u dummy /defaults/rclone_cron
+crontab -u dummy /cronlist/rclone_cron
 
 # create empty config file
 touch /config/rclone.conf
