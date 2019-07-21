@@ -60,20 +60,20 @@ Only if one task is executed in the container
 
 ## Command examples
 ```
-rclone copy --transfers=2 --checkers=8 --bwlimit=9M /data $DESTINATION:/$DESTINATION_SUBPATH
-rclone sync --size-only --transfers=2 --checkers=8 --bwlimit=9M /data $DESTINATION:/$DESTINATION_SUBPATH
+rclone copy --transfers=2 --checkers=8 --bwlimit=8.68M /data $DESTINATION:/$DESTINATION_SUBPATH
+rclone sync --size-only --transfers=2 --checkers=8 --bwlimit=8.68M /data $DESTINATION:/$DESTINATION_SUBPATH
 ```
 ## Cron file example of multiple sync tasks
 First parameter for rclone.sh is the rclone command
 Second parameter is optional and is the heartbeat api call to an HTTP service (eg. Healthchecks.io)
 
 ```
-0 * * * 1 /app/rclone.sh "rclone copy --transfers=2 --checkers=8 --size-only --bwlimit=9M /data/folder1 SYNC_DESTINATION:/SYNC_DESTINATION_SUBPATH" "https://hc-ping.com/your-uuid-here"
-0 * * * 2 /app/rclone.sh "rclone copy --transfers=2 --checkers=8 --size-only --bwlimit=9M /data/folder2 SYNC_DESTINATION_2:/SYNC_DESTINATION_SUBPATH_2" "https://hc-ping.com/your-uuid-here"
+0 * * * 1 /app/rclone.sh "rclone copy --transfers=2 --checkers=8 --size-only --bwlimit=8.68M /data/folder1 SYNC_DESTINATION:/SYNC_DESTINATION_SUBPATH" "https://hc-ping.com/your-uuid-here"
+0 * * * 2 /app/rclone.sh "rclone copy --transfers=2 --checkers=8 --size-only --bwlimit=8.68M /data/folder2 SYNC_DESTINATION_2:/SYNC_DESTINATION_SUBPATH_2" "https://hc-ping.com/your-uuid-here"
 ```
 
 ## Info
 
 * Shell access whilst the container is running: `docker exec -it rclone /bin/ash`
 * To monitor the logs of the container in realtime: `docker logs -f rclone`
-* The default command is set to prevent Google Drive upload quota limit of 750Gb per 24hour by limiting the upload speed to 9M/seg.
+* The default command is set to prevent Google Drive upload quota limit of 750Gb per 24hour by limiting the upload speed to 8.68MM/seg.
