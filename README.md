@@ -50,10 +50,10 @@ docker create \
 * `-v /cronlist` The path where the rclone_cron file is located (Modification needs restart of container)
 * `-v /data` The path to the data which should be backed up by Rclone
 * `-e RCLONE_CONFIG_PASS` If the rclone.conf is encrypted, specify the password here (Optional)
-* `-e DESTINATION` The destination where the data should be backed up to (must be the same name as specified in rclone.conf)
-* `-e DESTINATION_SUBPATH` If the data should be backed up to a subpath on the destination (will automaticaly be created if it does not exist) (Optional)
 
 Only if one task is executed in the container
+* `-e DESTINATION` The destination where the data should be backed up to (must be the same name as specified in rclone.conf)
+* `-e DESTINATION_SUBPATH` If the data should be backed up to a subpath on the destination (will automaticaly be created if it does not exist) (Optional)
 * `-e CRON_SCHEDULE` A custom cron schedule which will override the default value of: 0 * * * * (hourly) (Optional)
 * `-e COMMAND` A custom rclone command which will override the default value of: rclone copy --transfers=2 --checkers=8 --bwlimit=9M /data $DESTINATION:/$DESTINATION_SUBPATH (Optional)
 * `-e HEARTBEAT_URL` When starting the rclone cron job, report to a healthcheck API endpoint at a defined web URI (eg. Healthchecks.io)
