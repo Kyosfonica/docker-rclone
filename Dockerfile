@@ -43,6 +43,8 @@ RUN \
 	/var/tmp/* \
 	/var/cache/apk/*
 
+VOLUME ["/config", "/cronlist"]
+
 # create dummy user
 RUN \
 	groupmod -g 1000 users && \
@@ -54,7 +56,5 @@ RUN \
 
 # add local files
 COPY root/ /
-
-VOLUME ["/config", "/cronlist" ]
 
 ENTRYPOINT ["/init"]
