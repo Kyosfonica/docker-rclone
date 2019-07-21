@@ -13,7 +13,7 @@
 
   flock -n 200 || exit 1
 
-  command = "rclone copy --transfers=2 --checkers=8 --size-only --bwlimit=8.68MM /data $SYNC_DESTINATION:/'$SYNC_DESTINATION_SUBPATH'"
+  command = "rclone copy --transfers=2 --checkers=8 --size-only --bwlimit=8.68M /data $SYNC_DESTINATION:/'$SYNC_DESTINATION_SUBPATH'"
 
   if [[ $1 ]]; then
     command = $1

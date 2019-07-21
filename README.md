@@ -76,4 +76,4 @@ Second parameter is optional and is the heartbeat api call to an HTTP service (e
 
 * Shell access whilst the container is running: `docker exec -it rclone /bin/ash`
 * To monitor the logs of the container in realtime: `docker logs -f rclone`
-* The default command is set to prevent Google Drive upload quota limit of 750Gb per 24hour by limiting the upload speed to 8.68MM/seg.
+* The default command is set to prevent Google Drive upload quota limit of 750Gb per 24hour by limiting the upload speed to 8.68M/seg.
