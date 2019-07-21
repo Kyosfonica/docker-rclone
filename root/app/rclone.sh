@@ -2,12 +2,12 @@
 
 (
   if [[ $2 ]]; then
-    echo "Info: Reporting job success to health check endpoint"
+    echo "Info: Reporting job launched to health check endpoint"
     curl -fsS --retry 3 $2
   fi
 
   if [[ "$HEARTBEAT_URL" ]]; then
-    echo "Info: Reporting job success to health check endpoint"
+    echo "Info: Reporting job launched to health check endpoint"
     curl --retry 3 $HEARTBEAT_URL
   fi
 
